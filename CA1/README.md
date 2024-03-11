@@ -1,15 +1,22 @@
-gpus
+
+## Introduction
+The provided guide outlines a step-by-step process using version control systems like Git.
+This repository contains the code for the Tutorial React.js and Spring Data REST Application, 
+as well as additional features and unit tests developed as part of a class assignment. 
+The assignment involves adding new fields like Job Years and Email, to record employee data, implementing unit tests, 
+and tag the repository at the end of witch task. The assignment goals are documented in this README file.
+Also have an Alternative solution using version control systems Mercurial. 
+
+## Creation the repository and the initial commit
+
+##### Create the new repository named devops-23-24-teacher name-student number**
 
 
-##Creation the repository and the initial commit
-
-1. **Create the new repository named devops-23-24-teacher name-student number**
-
-2. Open the terminal and navigate to the directory where you want to create the new repository.
+1. **Open the terminal and navigate to the directory where you want to create the new repository.**
     ```
     git clone https://github.com/Nadia24601/devops-23-24-PSM-1231849.git
     ```
-   2.1. **Create the README.md and first commit**
+2. **Create the README.md and first commit**
     ```
    echo "# devops-23-24-PSM-1231849" >> README.md
     git init
@@ -100,7 +107,7 @@ gpus
      ```
        git checkout -b email-field
     ```
-    14. **Implement support for the email field**
+14. **Implement support for the email field**
     - Add a new field to record the email of the employee in the company.
     - Update the application to support the new field.
     - **Add Unit Tests:** Write unit tests for testing the creation of Employees and the validation of their attributes.
@@ -133,7 +140,7 @@ gpus
     ```
     git status
     git add .
-    git commit -m "Closes #(isseu number). Fixed email bugs and tests”
+    git commit -m "Closes #(issue number). Fixed email bugs and tests”
     git checkout main
     git pull
     git merge --no-ff --no-squash fix-invalid-email
@@ -149,15 +156,14 @@ gpus
     git tag -a ca1-part2 -m “tag ca1-part2”
     git push --tags
     ```
-
-
 ### Description
 
 This tutorial provides a step-by-step guide for creating a new feature in the Tutorial React.js and Spring Data REST Application.
 The new feature involves adding a new field to record the years of service of an employee in the company.
 The tutorial also covers the development of unit tests for the new feature, debugging the application, and marking the
-repository at the end of the assignment.
-
+repository at the end of the assignment. 
+During this work issues were created and closed and the repository was tagged at the end of each task.
+A gitignore file was created to ignore the files that are not necessary to be tracked by the version control system.
 
 ### Changes Required
 
@@ -188,4 +194,126 @@ To run the application:
 3. Navigate to the project directory.
 4. Run `mvn spring-boot:run` to start the Spring Boot application.
 5. Access the application at [http://localhost:8080](http://localhost:8080) in your web browser.
+
+
+## Alternative Solution
+For an alternative version control solution, one could consider using Mercurial.
+
+
+### 1. Comparison of Mercurial and Git:
+
+- **Distributed Version Control:**
+    - Both Mercurial and Git are distributed version control systems, allowing users to have a full copy of the repository locally.
+    - This enables offline work and faster access to version history.
+
+- **Branching and Merging:**
+    - Both Mercurial and Git support branching and merging operations, enabling developers to work on isolated features and merge changes back into the main branch.
+    - Mercurial uses a different terminology for some of these operations, such as "update" instead of "checkout" and "commit" instead of "push."
+    - Git allows you to create, remove, and modify branches at any moment without impacting previous commits. In Mercurial, we need to make changes in a complete set of a file in a repository.
+
+- **History Tracking:**
+    - Both systems track changes to files over time, allowing users to view the history of changes and revert to previous versions if needed.
+    - Mercurial uses a different command set for history tracking, such as "hg log" instead of "git log."
+
+- **Collaboration:**
+    - Mercurial and Git both support collaboration among multiple developers by allowing them to push and pull changes to and from remote repositories.
+    - Mercurial uses a different command set for collaboration, such as "hg push" instead of "git push."
+
+- **Performance:**
+    - Git is known for its fast performance, especially when it comes to operations like branching, merging, and committing.
+    - Mercurial also offers good performance, but some users have reported that Git is faster in certain scenarios.
+
+
+
+## 2. Using Mercurial for the Assignment Goals:
+
+### Repository Setup and Initial Commit:
+1. **Create the new repository:**
+    - `devops-23-24-teachername-studentnumber`
+
+2. **Clone the repository and initialize:**
+    ```
+    hg clone https://example.com/Nadia24601/devops-23-24-PSM-1231849
+    cd devops-23-24-PSM-1231849
+    hg init
+    touch README.md
+    hg add README.md
+    hg commit -m "Initial commit"
+    ```
+
+3. **Create .hgignore file and add relevant entries.**
+
+
+### Tutorial React.js and Spring Data REST Application Integration:
+1. **Clone the tutorial repository:**
+    ```
+    hg clone https://example.com/spring-guides/tut-react-and-spring-data-rest
+    ```
+2. **Copy the tutorial code into your repository:**
+    ```
+    cp -r tut-react-and-spring-data-rest/* devops-23-24-PSM-1231849
+    ```
+
+3. **Commit changes:**
+    ```
+    hg add
+    hg commit -m "Integrated React.js and Spring Data REST tutorial"
+    ```
+
+4. **Create an initial tag:**
+    ```
+    hg tag v1.1.0
+    ``` 
+
+### 1. Add a new field to record years of service and unit tests
+1. **Create a new branch from default (master)**
+    ```
+    hg branch feature/add-years-of-service
+    ```
+2. **Implement the feature and tests**
+
+ 3. **Commit changes**
+    ```
+    hg commit -m "Added years of service field and tests"
+    ```
+    
+4. **Merge into default (master) and tag**
+    ```
+    hg update default
+    hg merge feature/add-years-of-service
+    hg commit -m "Merge feature/add-years-of-service"
+    hg tag v1.2.0
+    ```
+   
+
+### 2. Add email field and fix bugs
+1. **Create a new branch**
+    ```
+    hg branch feature/add-email-field
+    ```
+2. **Implement the feature and fix bugs**
+
+3. **Commit changes**
+    ```
+    hg commit -m "Added email field and fixed bugs"
+    ```
+4. **Merge into default and tag**
+    ```
+    hg update default
+    hg merge feature/add-email-field
+    hg commit -m "Merge feature/add-email-field"
+    hg tag v1.3.0
+    ```
+   
+
+### 3. Mark repository at the end of the assignment
+    hg tag ca1-part2
+
+## Conclusion:
+
+While Mercurial shares many similarities with Git in terms of version control features and workflow, there are also differences in 
+commands and terminology. Overall, both tools are capable of achieving the goals outlined in the assignment, but users may have 
+preferences based on their familiarity with the tool's interface and ecosystem.
+
+
  
