@@ -27,6 +27,8 @@ dependencies {
     implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.2'
     implementation 'junit:junit:4.13.1'
     implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    testImplementation 'junit:junit:4.12'
+
 }
  
 
@@ -52,7 +54,7 @@ jar {
 task runClient(type:JavaExec, dependsOn: classes){
     group = "DevOps"
     description = "Launches a chat client that connects to a server on localhost:59001 "
-  
+
     classpath = sourceSets.main.runtimeClasspath
 
     mainClass = 'basic_demo.ChatClientApp'
@@ -71,7 +73,15 @@ task runServer (type:JavaExec, dependsOn: classes){
     args '59001'
 }
 task backup(type:Copy){
+    group = "DevOps"
     from 'src/main'
     into 'backup'
 }
+task zip(type: Zip, dependsOn: backup) {
+    group = "DevOps"
+    description = "Zips the chat server log file."
 
+    from 'src/main'
+    archiveFileName = 'src.zip'
+    destinationDirectory = file('build')
+}
