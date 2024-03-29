@@ -77,7 +77,7 @@ task backup(type:Copy){
     from 'src/main'
     into 'backup'
 }
-task zip(type: Zip, dependsOn: backup) {
+task zip(type: Zip) {
     group = "DevOps"
     description = "Zips the chat server log file."
 
