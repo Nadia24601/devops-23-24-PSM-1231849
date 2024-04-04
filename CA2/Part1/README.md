@@ -13,16 +13,14 @@ To get started, follow these steps:
 ```
    git clone https://1231849-admin@bitbucket.org/pssmatos/gradle_basic_demo
 ```
-4. Follow the instructions provided in this README to complete the assignment tasks.
+Follow the instructions provided in this README to complete the assignment tasks.
 
 ## Tasks
 
 ### 1. Execute the Server
 
 Add a new task to execute the server.
-    
- ```java
-
+ ```
 task runServer (type:JavaExec, dependsOn: classes){
 group = "DevOps"
 description = "Launches a chat server on localhost:59001"
@@ -34,39 +32,53 @@ description = "Launches a chat server on localhost:59001"
     args '59001'
 }
 ```
+Commit the changes using the following command:
+```
+git add .
+git commit -m " Close #IssueNumber - Add task to execute the server"
+git push
+
+```
+
 
 ### 2. Unit Test
 Add a simple unit test and update the Gradle script to execute the test.
 
-```java
-
-
+```
 public class AppTest {
-    {
         @Test
         public void testAppHasAGreeting() {
         App classUnderTest = new App();
         assertNotNull("app should have a greeting", classUnderTest.getGreeting()); }
     }
     
-
+```
+Commit the changes using the following command:
+  ```
+git add .
+git commit -m " Close #IssueNumber - Add a simple unit test"
+git push
 ```
 
 ### 3. Copy Task
 Add a new task of type Copy to make a backup of the sources of the application.
-    
-  ```java
-
+  ```
 task backup(type:Copy){
 group = "DevOps"
 from 'src/main'
 into 'backup'
 }
  ```
+Commit the changes using the following command:
+  ```
+git add .
+git commit -m " Close #IssueNumber - Add task to make a backup of the sources"
+git push
+```
+
 ### 4. Zip Task
 Add a new task of type Zip to make an archive (zip file) of the sources of the application.
-  ```java
-
+  ```
 task zip(type: Zip) {
 group = "DevOps"
 description = "Zips the chat server log file."
@@ -76,6 +88,12 @@ description = "Zips the chat server log file."
     destinationDirectory = file('build')
 }
  ```
+Commit the changes using the following command:
+  ```
+git add .
+git commit -m " Close #IssueNumber - Add task to make an archive of the sources"
+git push
+```
 ### 5. Tag
 At the end of Part 1, mark your repository with the tag ca2-part1.
     
