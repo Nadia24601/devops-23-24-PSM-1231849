@@ -34,6 +34,15 @@
     "babel-loader": "^8.0.2",
     "webpack": "^4.19.1",
     "webpack-cli": "^3.1.0",
-    "packageManager": "npm@9.6.7"
+    "packageManager": "npm@9.6.7",
+
+  },
+  "scripts": {
+    "webpack": "webpack",
+    "build": "npm run webpack",
+    "check": "echo Checking frontend",
+    "clean": "echo Cleaning frontend",
+    "lint": "echo Linting frontend",
+    "test": "echo Testing frontend"
   }
 }
