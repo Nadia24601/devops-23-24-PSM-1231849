@@ -112,8 +112,8 @@ class EmployeeTest {
         Employee employee2 = new Employee("Elizabeth", "Bennet", "Novel", 20, "rakshablackbird@hotmail.com");
         Employee employee3 = new Employee("Fitzwilliam", "Darcy", "Novel", 30, "rakshablackbird@hotmail.com");
 
-        assertTrue(employee1.equals(employee3));
-        assertFalse(employee1.equals(employee2));
+        assertEquals(employee1, employee3);
+        assertNotEquals(employee1, employee2);
     }
 
     @Test
