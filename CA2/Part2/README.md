@@ -50,7 +50,7 @@ This project aims to convert the basic version of the Tutorial application to us
 
     - Copy the `src` folder and all its subfolders from the basic tutorial into the `CA2/Part2/` folder.
     - Also, copy the `webpack.config.js` and `package.json` files.
-   - Change the import in test  class from javax to jakarta.
+    - Change the import in test  class from javax to jakarta.
 
 3. **Update build.gradle:**
 
@@ -188,16 +188,6 @@ create a build.xml file in the root of the project with the following content:
     <target name="copyJar">
         <copy file="build/libs/your_application.jar" todir="${dist.dir}"/>
     </target>
-
-    <!-- Delete Webpack Files task -->
-    <target name="clean" depends="deleteWebpack">
-        <!-- Add your clean task here -->
-    </target>
-
-    <target name="deleteWebpack">
-        <delete dir="${basedir}/src/main/resources/static/built"/>
-    </target>
-
 </project>
 ```
 ## Building and Running the Application
@@ -209,6 +199,7 @@ create a build.xml file in the root of the project with the following content:
     ant build
     ```
 2. **Run the Application:**
+
 
 3. Start the application using the following command:
 
@@ -238,6 +229,45 @@ Ensure this task is executed automatically by Ant before the `clean` task.
 </target>
 ```
 ## Conclusion
-Was found Ant as a good alternative solution to Gradle. 
-It is a powerful build tool that can be used to automate the build process of a project. 
-By configuring Ant tasks in the build.xml file, you can define the steps required to compile, test, package, and deploy your application. 
+It was found Ant as a good alternative solution to Gradle. 
+
+### Some of the differences between Gradle and Ant are as follows:
+
+### Gradle:
+- Is a Groovy-based build automation tool; 
+
+- It uses DSL (Domain Specific Language) instead of XML (Extensible Markup Language) to define build scripts;
+
+- Is developed to overcome the drawbacks of Maven and Ant;
+
+- Plugins are coded in Java or Groovy programming language;
+
+- Provides a structured build;
+
+- Provides comfortable support for IDE integration;
+
+- Is more standardized than Ant in case of flexibility;
+
+- Supports multi-project build.
+
+### Ant:
+- Is a Java-based build automation tool;
+
+- It uses XML files to determine build scripts;
+
+- It is developed to overcome the drawbacks of the Make build tool of Unix;
+
+- It does not impose any coding convention;
+
+- It does not impose project structured;
+
+- The IDE integration is slightly complex than maven;
+
+- It is less flexible than Gradle;
+
+- It does not support multi-project build;
+
+
+In summary, Gradle offers a modern and flexible build automation solution with powerful features such as incremental builds and extensive plugin support. 
+On the other hand, Apache Ant is known for its simplicity and platform independence, making it suitable for straightforward build processes, 
+especially within the Java ecosystem.
