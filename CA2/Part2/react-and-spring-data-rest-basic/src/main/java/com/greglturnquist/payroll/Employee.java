@@ -35,7 +35,7 @@ public class Employee {
 	private int jobYears;
 	private String email;
 
-	private Employee() {}
+	public Employee() {}
 
 	public Employee(String firstName, String lastName, String description, int jobYears, String email) {
 		if (!validConstructorArguments(firstName, lastName, description, jobYears, email)) {
