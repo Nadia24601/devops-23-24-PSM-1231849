@@ -28,7 +28,7 @@ Go to CA2/Part2/react-and-spring-data-rest-basic/src/main/resources/application.
 server.servlet.context-path=/react-and-spring-data-rest-basic-0.0.1-SNAPSHOT
 spring.data.rest.base-path=/api
 
-spring.datasource.url=jdbc:h2:tcp://192.168.56.10:9092/./jpadb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+spring.datasource.url=jdbc:h2:tcp://192.168.56.11:9092/./jpadb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
 spring.datasource.driverClassName=org.h2.Driver
 spring.datasource.username=sa
 spring.datasource.password=
@@ -57,7 +57,7 @@ Change the configuration according to your needs.
           ./gradlew bootRun
            nohup ./gradlew bootRun > /home/vagrant/spring-boot-app.log 2>&1 &
           # To deploy the war file to tomcat9 do the following command:
-          sudo cp ./build/libs/basic-0.0.1-SNAPSHOT.war /var/lib/tomcat9/webapps
+          # sudo cp ./build/libs/basic-0.0.1-SNAPSHOT.war /var/lib/tomcat9/webapps
         SHELL
 
   end
