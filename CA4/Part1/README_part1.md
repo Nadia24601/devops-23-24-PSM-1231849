@@ -142,6 +142,7 @@ Another alternative is using the Docker Desktop app
 
 After completing the assignment, tag the repository with ca4-part1:
 
-sh
+````
 git tag ca4-part1
 git push origin ca4-part1
+````

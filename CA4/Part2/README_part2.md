@@ -112,6 +112,50 @@ jdbc:h2:~/data/devops
 user: username 
 password: password
 
+## Publich the images to Docker Hub
+Firstly you need to tag the images. Then you can push the images to your Docker Hub repository.
+docker tag part2-database nadia24601/devops-part2-db:latest
+docker tag part2-web nadia24601/devops-part2-web:latest
+
+Then you can push the Images to Docker Hub repositories:
+docker push nadia24601/devops-part2-db:latest
+docker push nadia24601/devops-part2-web:latest
+
+### Create and use a volume for the database
+
+Use a volume with the db container to get a copy of the database file by using the
+exec to run a shell in the container and copying the database file to the volume.
+
+Firstly run the services defined in the compose.yml:
+```
+docker-compose up -d
+```
+Access the shell of the database container:
+```
+docker-compose exec database bash
+```
+Then inside the container, copy the database file to the directory mounted to the volume:
+```
+cp /root/data/devops.mv.db /usr/src/db
+```
+
+
+## Files Included
+
+- `docker-compose.yml`
+- `Dockerfile` (for web service)
+- `Dockerfile` (for db service)
+
+## Alternative solution to Docker: Kubernetes
+
+Kubernetes as a Docker Alternative:
+Kubernetes emerges as a robust alternative to Docker, offering a comprehensive container orchestration solution. Unlike Docker, which primarily focuses on containerization, Kubernetes extends its capabilities to automate deployment, scaling, and management of containerized applications, especially in large-scale production environments.
+
+While Docker ensures consistency and portability by encapsulating applications within containers, Kubernetes steps in to streamline the management of these containers across clusters of machines. It empowers users to define deployment configurations, services, and networking rules using YAML manifests, thereby providing enhanced flexibility and control over containerized applications.
+
+In essence, while Docker serves as the foundation for containerization, Kubernetes complements it by offering advanced features tailored for orchestrating containerized applications at scale. Together, they form a potent duo for modern software development and deployment, ensuring efficiency and reliability across diverse environments.
+
+
 ## Tagging the Repository
 
 Tag your repository with `ca4-part2`:
@@ -120,13 +164,7 @@ Tag your repository with `ca4-part2`:
 git tag -a ca4-part2 -m "Containers with Docker"
 git push origin ca4-part2
 ```
-
-## Files Included
-
-- `docker-compose.yml`
-- `Dockerfile` (for web service)
-- `Dockerfile` (for db service)
-
+ 
 ## Conclusion
 
 In this part of the assignment, we have created two Dockerfiles,
