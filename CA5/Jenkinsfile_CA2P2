@@ -1,0 +1,70 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out repo...'
+                git branch: 'main', url: 'https://github.com/Nadia24601/devops-23-24-PSM-1231849.git'
+            }
+        }
+
+        stage('Assemble') {
+            steps {
+                echo 'Assembling project...'
+                dir('CA2/Part2/react-and-spring-data-rest-basic') {
+                    sh 'chmod +x gradlew'
+                    sh './gradlew assemble'
+                }
+            }
+            post {
+                always {
+                    junit '**/build/test-results/**/*.xml'
+                }
+            }
+        }
+
+        stage('Javadoc') {
+            steps {
+                dir('CA2/Part2/react-and-spring-data-rest-basic') {
+                    sh './gradlew javadoc'
+                }
+            }
+            post {
+                always {
+                    publishHTML(target: [
+                        allowMissing         : false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll              : true,
+                        reportDir            : 'CA2/Part2/react-and-spring-data-rest-basic/build/docs/javadoc',
+                        reportFiles          : 'index.html',
+                        reportName           : 'Javadoc'
+                    ])
+                }
+            }
+        }
+
+        stage('Archive') {
+            steps {
+                echo 'Archiving artifacts...'
+                dir('CA2/Part2/react-and-spring-data-rest-basic') {
+                    archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
+                }
+            }
+        }
+
+        stage('Publish Image') {
+            steps {
+                script {
+                    dir('CA5') {
+                        sh 'cp ..\\..\\CA2\\Part2\\react-and-spring-data-rest-basic\\build\\libs\\*.war .'
+                        def app = docker.build("nadia24601/devops:${env.BUILD_NUMBER}")
+                        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_credentials') {
+                            app.push()
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
