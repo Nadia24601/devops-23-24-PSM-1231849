@@ -3,33 +3,37 @@
   stages {
   stage('Checkout') {
   steps {
-  echo 'Checking out...'
-  git 'https://github.com/Nadia24601/devops-23-24-PSM-1231849.git'
+  echo 'Checking out repo...'
+  git branch: 'main', url:  'https://github.com/Nadia24601/devops-23-24-PSM-1231849.git'
   }
   }
-  stage('Assemble') {
-  steps {
-  echo 'Assembling project...'
-  dir('CA2/Part1') {
+   stage('Assemble') {
+   steps {
+   echo 'Assembling project...'
+   dir('CA2/Part1/gradle_basic_demo') {
 
-  sh 'chmod +x gradlew'
-  sh './gradlew assemble'
-  }
-  }
-  }
-  stage('Test') {
-  steps {
-  echo 'Testing project...'
-  dir('CA2/Part1') {
-  sh './gradlew test'
-  }
-  }
-  }
-  stage('Archive') {
-  steps {
-  dir('CA2/Part1') {
-  archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
-  }
-  }
-  }
+    sh 'chmod +x gradlew'
+    sh './gradlew assemble'
+          }
+        }
+      }
+
+      stage('Test') {
+        steps {
+          echo 'Testing project...'
+          dir('CA2/Part1/gradle_basic_demo') {
+            sh './gradlew test'
+          }
+        }
+      }
+
+      //Archive the generated binary file from the assemble stage
+      stage('Archive') {
+        steps {
+          dir('CA2/Part1/gradle_basic_demo') {
+            archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
+          }
+        }
+      }
+    }
   }
