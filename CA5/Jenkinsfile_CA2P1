@@ -1,0 +1,35 @@
+  pipeline {
+  agent any
+  stages {
+  stage('Checkout') {
+  steps {
+  echo 'Checking out...'
+  git 'https://github.com/Nadia24601/devops-23-24-PSM-1231849.git'
+  }
+  }
+  stage('Assemble') {
+  steps {
+  echo 'Assembling project...'
+  dir('CA2/Part1') {
+
+  sh 'chmod +x gradlew'
+  sh './gradlew assemble'
+  }
+  }
+  }
+  stage('Test') {
+  steps {
+  echo 'Testing project...'
+  dir('CA2/Part1') {
+  sh './gradlew test'
+  }
+  }
+  }
+  stage('Archive') {
+  steps {
+  dir('CA2/Part1') {
+  archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
+  }
+  }
+  }
+  }
