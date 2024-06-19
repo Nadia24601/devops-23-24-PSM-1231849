@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+ environment {
+        DIR = 'CA2/Part2/react-and-spring-data-rest-basic'
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -19,8 +21,18 @@ pipeline {
             }
         }
 
+        stage('Test') {
+                    steps {
+                        echo 'Testing project...'
+                        dir('CA2/Part2/react-and-spring-data-rest-basic') {
+                            sh './gradlew test'
+                        }
+                    }
+                }
+
         stage('Javadoc') {
             steps {
+             echo 'Generating Javadocs...'
                 dir('CA2/Part2/react-and-spring-data-rest-basic') {
                     sh './gradlew javadoc'
                 }
@@ -33,7 +45,6 @@ pipeline {
                         reportName           : 'Javadoc'
                     ])
                 }
-
            }
 
         stage('Archive') {
@@ -65,7 +76,7 @@ pipeline {
                    stage('Publish Docker Image') {
                             steps {
                                 echo 'Publishing Docker image...'
-                                dir(env.DIR) {
+                                dir('CA2/Part2/react-and-spring-data-rest-basic') {
                                     script {
                                         def dockerImage = docker.build("nadia24601/devops:${env.BUILD_ID}", "-f DockerfileCA2P2 .")
                                         docker.withRegistry('https://index.docker.io/v1/', 'dockerhub_id') {
@@ -73,7 +84,5 @@ pipeline {
                                         }
                                     }
                                 }
-                            }
-                   }
-                }
-            }
+                             }
+                          }
