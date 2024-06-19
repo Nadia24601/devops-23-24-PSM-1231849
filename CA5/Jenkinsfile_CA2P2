@@ -57,7 +57,7 @@ pipeline {
                                 EXPOSE 8080
                                 ENTRYPOINT ["java", "-jar", "app.jar"]
                                 """
-                                writeFile file: 'DockerfileCa2P2', text: dockerfileContent
+                                writeFile file: 'DockerfileCA2P2', text: dockerfileContent
                             }
                         }
                     }
@@ -67,7 +67,7 @@ pipeline {
                                 echo 'Publishing Docker image...'
                                 dir(env.DIR) {
                                     script {
-                                        def dockerImage = docker.build("nadia24601/devops:${env.BUILD_ID}", "-f DockerfileCa2P2 .")
+                                        def dockerImage = docker.build("nadia24601/devops:${env.BUILD_ID}", "-f DockerfileCA2P2 .")
                                         docker.withRegistry('https://index.docker.io/v1/', 'dockerhub_id') {
                                         dockerImage.push()
                                         }
